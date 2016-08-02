@@ -1,0 +1,22 @@
+{
+  "private": "true",
+  "name": "us_population",
+  "version": "v1.0.0",
+  "description": "A skill for Amazon Alexa that provides the us population",
+  "scripts": {},
+  "dependencies": {
+    "alexa-app": "2.3.4",
+    "config": "1.16.0",
+    "grunt": "^0.4.5",
+    "request": "^2.74.0",
+    "sync-request": "^3.0.1"
+  },
+  "devDependencies": {
+    "aws-sdk": "latest",
+    "grunt": "0.4.*",
+    "grunt-aws-lambda": "0.8.0",
+    "gulp": "^3.9.1",
+    "gulp-zip": "^3.2.0",
+    "npm": "^2.8.3"
+  }
+}
