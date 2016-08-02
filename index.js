@@ -8,7 +8,7 @@ var Population = require('./population');
 app.launch(function(request,response) {
 	var msg = 'Hello, I can provide you with the united states population for ' +
 		'today or the end of last year. ' +
-			'Ask for today or last month';
+			'Ask for today, last year, or end of year ';
 	var title = 'US Population';
 	response.say(msg);
 	response.card(title,"Population Card");
