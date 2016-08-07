@@ -12,26 +12,8 @@ app.launch(function(request,response) {
 	var title = 'US Population';
 	response.say(msg);
 	response.card(title,"Population Card");
+	response.shouldEndSession(false);
 });
-
-/**
- * IntentRequest.
- */
-/*
-app.intent('number',
-  {
-    'slots':{'number':'NUMBER'},
-    'utterances':[ 'say the number {1-100|number}' ]
-  },
-  function(request,response) {
-    var number = request.slot('number');
-    response.say('You asked for the number '+number);
-    response.shouldEndSession(true);
-    response.send();
-  }
-);
-*/
-
 
 /**
  * IntentRequest w/ asynchronous response.
@@ -52,12 +34,16 @@ app.intent('checkPopulation',
 		setTimeout(function() {		// simulate an async request
             Population.exec('today');
 			var popstr = Population.result;
+			var title = 'US Population';
+			var msg = 'The United States population ' + popstr;
 
 			// This is async and will run after a brief delay
-			response.say('The United States population ' + popstr );
+			response.say(msg);
+			response.card(title,"Population Card");
 
 			// Must call send to end the original request
 			response.send();
+			response.shouldEndSession(false);
 
 		}, 250);
 
@@ -84,12 +70,16 @@ app.intent('eoyPopulation',
 		setTimeout(function() {		// simulate an async request
 			Population.exec('eoy');
 			var popstr = Population.result;
+			var title = 'US Population';
+			var msg = 'The United States population ' + popstr;
 
 			// This is async and will run after a brief delay
-			response.say('The United States population ' + popstr );
+			response.say(msg);
+			response.card(title,"Population Card");
 
 			// Must call send to end the original request
 			response.send();
+			response.shouldEndSession(false);
 
 		}, 250);
 
