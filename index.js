@@ -15,6 +15,43 @@ app.launch(function(request,response) {
 	response.shouldEndSession(false);
 });
 
+app.intent('AMAZON.StopIntent',
+	{
+		'utterances':[
+			'stop', 'off', 'shut up'
+		]
+	},
+	function( request,response ) {
+		var msg = 'U. S. Population Exiting, goodbye.';
+		var title = 'US Population';
+		response.say(msg);
+		response.card(title, "Population Card");
+		response.shouldEndSession(true);
+
+		console.log('>>> StopIntent <<<');
+		console.log(msg);
+	}
+);
+
+app.intent('AMAZON.HelpIntent',
+	{
+		'utterances':[
+			'help', 'what', 'explain', 'help me', 'can you help me', 'I don\'t understand'
+		]
+	},
+	function( request,response ) {
+		var msg = 'This skill is intended to provide the U. S. Population for ' +
+			'today or last year.  Please ask for today or the end of last year. ';
+		var title = 'US Population';
+		response.say(msg);
+		response.card(title,"Population Card");
+		response.shouldEndSession(false);
+
+		console.log('>>> HelpIntent <<<');
+		console.log(msg);
+	}
+);
+
 /**
  * IntentRequest w/ asynchronous response.
  *
@@ -45,6 +82,8 @@ app.intent('checkPopulation',
 			response.send();
 			response.shouldEndSession(false);
 
+			console.log('>>> today <<<');
+			console.log(msg);
 		}, 250);
 
 		// Return false immediately so alexa-app doesn't send the response
@@ -81,6 +120,8 @@ app.intent('eoyPopulation',
 			response.send();
 			response.shouldEndSession(false);
 
+			console.log('>>> eoy <<<')
+			console.log(msg);
 		}, 250);
 
 		// Return false immediately so alexa-app doesn't send the response
