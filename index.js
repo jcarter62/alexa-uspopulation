@@ -1,3 +1,15 @@
+/*
+file: index.js
+purpose: Provide user the population via alexa interface.
+This is the main entry point for alexa app.  Contains launch & intents.
+
+20160809: Implemented CancelIntent due to Certification failure.
+
+Also, removed response.card() from built in intents.  After reviewing youtube instruction
+on why cards exist, it appeared more appropriate for cards to be generated only when the user
+obtained a population, instead of every time there was a response.
+ */
+
 var alexa = require('alexa-app');
 var app = new alexa.app();
 var Population = require('./population');
@@ -11,18 +23,12 @@ app.launch(function(request,response) {
 			'Ask for today, last year, or end of year ';
 	var title = 'US Population';
 	response.say(msg);
-	response.card(title,"Population Card");
 	response.shouldEndSession(false);
 });
 
 app.intent('AMAZON.StopIntent',
-	{
-		'utterances':[
-			'stop', 'off', 'shut up'
-		]
-	},
 	function( request,response ) {
-		var msg = 'U. S. Population Exiting, goodbye.';
+		var msg = 'Thank you for using U. S. Population, goodbye.';
 		var title = 'US Population';
 		response.say(msg);
 		response.card(title, "Population Card");
@@ -33,18 +39,23 @@ app.intent('AMAZON.StopIntent',
 	}
 );
 
+app.intent('AMAZON.CancelIntent',
+	function( request,response ) {
+		var msg = 'Goodbye.';
+		response.say(msg);
+		response.shouldEndSession(true);
+
+		console.log('>>> CancelIntent <<<');
+		console.log(msg);
+	}
+);
+
 app.intent('AMAZON.HelpIntent',
-	{
-		'utterances':[
-			'help', 'what', 'explain', 'help me', 'can you help me', 'I don\'t understand'
-		]
-	},
 	function( request,response ) {
 		var msg = 'This skill is intended to provide the U. S. Population for ' +
 			'today or last year.  Please ask for today or the end of last year. ';
 		var title = 'US Population';
 		response.say(msg);
-		response.card(title,"Population Card");
 		response.shouldEndSession(false);
 
 		console.log('>>> HelpIntent <<<');
@@ -76,7 +87,7 @@ app.intent('checkPopulation',
 
 			// This is async and will run after a brief delay
 			response.say(msg);
-			response.card(title,"Population Card");
+			response.card(title,msg);
 
 			// Must call send to end the original request
 			response.send();
@@ -114,7 +125,7 @@ app.intent('eoyPopulation',
 
 			// This is async and will run after a brief delay
 			response.say(msg);
-			response.card(title,"Population Card");
+			response.card(title,msg);
 
 			// Must call send to end the original request
 			response.send();

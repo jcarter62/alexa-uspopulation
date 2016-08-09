@@ -1,14 +1,17 @@
-/*  api call
- http://api.population.io:80/1.0/population/United%20States/2016-17-28/
- need to fill in the date with today's date.
+/*
+This is the population module for the alexa app.
 
- Example return:
- {
- "total_population": {
- "date": "2016-07-28",
- "population": 327874276
- }
- }
+In this implementation, we are only interested in the US population, so the base url
+is statically defined.  I was having some trouble with the request taking a long time,
+so I used the module 'sync-request' in order to call the api synchronously.
+
+Other Information:
+  api call
+  http://api.population.io:80/1.0/population/United%20States/2016-17-28/
+  need to fill in the date with today's date or another date.
+
+  Example return:
+  { "total_population": { "date": "2016-07-28", "population": 327874276 }}
  */
 
 var request = require('sync-request');
