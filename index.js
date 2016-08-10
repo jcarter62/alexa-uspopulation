@@ -89,13 +89,17 @@ app.intent('checkPopulation',
 			response.say(msg);
 			response.card(title,msg);
 
+			msg = ', , , Please ask for today or the end of last year ' +
+			      'for another result, , If you wish to exit this skill, say stop.';
+			response.say(msg);
+
 			// Must call send to end the original request
 			response.send();
 			response.shouldEndSession(false);
 
 			console.log('>>> today <<<');
 			console.log(msg);
-		}, 250);
+		}, 500);
 
 		// Return false immediately so alexa-app doesn't send the response
 		return false;
@@ -127,13 +131,17 @@ app.intent('eoyPopulation',
 			response.say(msg);
 			response.card(title,msg);
 
+			msg = ', , Please ask for today or the end of last year ' +
+				'for another result, , If you wish to exit this skill, say stop.';
+			response.say(msg);
+
 			// Must call send to end the original request
 			response.send();
 			response.shouldEndSession(false);
 
 			console.log('>>> eoy <<<')
 			console.log(msg);
-		}, 250);
+		}, 500);
 
 		// Return false immediately so alexa-app doesn't send the response
 		return false;
