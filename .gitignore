@@ -12,7 +12,8 @@ node_modules
 .DS_Store
 
 # PROJECT SPECIFIC
-dist/default.json
+config/default.json
+dist
 
 .idea/compiler.xml
 .idea/copyright/

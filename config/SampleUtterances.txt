@@ -1,0 +1,7 @@
+checkPopulation population today
+checkPopulation today's population
+checkPopulation population
+checkPopulation today
+eoyPopulation end of year population
+eoyPopulation end of year
+eoyPopulation last year
